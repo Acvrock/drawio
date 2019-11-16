@@ -2984,7 +2984,7 @@ var NewDialog = function(editorUi, compact, showName, callback, createOnly, canc
 	var list = document.createElement('div');
 	list.style.cssText = 'position:absolute;left:30px;width:128px;top:' + divTop + 'px;bottom:68px;margin-top:6px;overflow:auto;border:1px solid #d3d3d3;';
 	
-	var w = 140;
+	var w = 420;
 	var h = 140;
 
 	function selectElement(elt, xml, libs, extUrl, infoObj, clibs)
@@ -3012,19 +3012,27 @@ var NewDialog = function(editorUi, compact, showName, callback, createOnly, canc
 	{
 		var elt = document.createElement('div');
 		elt.className = 'geTemplate';
-		elt.style.height = w + 'px';
-		elt.style.width = h + 'px';
+		elt.style.height = h + 'px';
+		elt.style.width = w + 'px';
 		
 		if (tooltip != null && tooltip.length > 0)
 		{
 			elt.setAttribute('title', tooltip);
+			var eltitle = document.createElement('div');
+			eltitle.style.paddingTop = h/2+'px';
+			eltitle.style.paddingBottom = h/2+'px';
+			eltitle.style.width = '260px';
+			eltitle.style.wordBreak = 'break-all';
+			eltitle.style.float = 'right';
+			eltitle.textContent = tooltip;
+			elt.appendChild(eltitle);
 		}
 
 		if (imgUrl != null)
 		{
 			elt.style.backgroundImage = 'url(' + imgUrl + ')';
 			elt.style.backgroundSize = 'contain';
-			elt.style.backgroundPosition = 'center center';
+			elt.style.backgroundPosition = 'left center';
 			elt.style.backgroundRepeat = 'no-repeat';
 			
 			mxEvent.addListener(elt, 'click', function(evt)
@@ -3043,7 +3051,7 @@ var NewDialog = function(editorUi, compact, showName, callback, createOnly, canc
 			var png = preview || (TEMPLATE_PATH + '/' + url.substring(0, url.length - 4) + '.png');
 			
 			elt.style.backgroundImage = 'url(' + png + ')';
-			elt.style.backgroundPosition = 'center center';
+			elt.style.backgroundPosition = 'left center';
 			elt.style.backgroundRepeat = 'no-repeat';
 			
 			var createIt = false;
